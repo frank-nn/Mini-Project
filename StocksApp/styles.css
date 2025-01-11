@@ -1,0 +1,22 @@
+.stock-card {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.stock-card h3 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
