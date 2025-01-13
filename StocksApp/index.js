@@ -7,7 +7,8 @@ async function fetchStockData() {
     .getElementById("stock-symbol")
     .value.trim()
     .toUpperCase();
-  const apiKey = "YOUR_API_KEY"; // Replace with your Alpha Vantage API key
+  const apiKey =
+    "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=your_api_key"; // Replaced with my Alpha Vantage API key
   const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${apiKey}`;
 
   if (!symbol) {
