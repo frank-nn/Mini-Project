@@ -1,32 +1,30 @@
 const apiKey = "07f6fb97b7192b8b3209b2f172469e07";
-const apiUrl =
-  "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+const apiUrl = "https://api.openweathermap.org/data/2.5/weather";
 
-const searchBox = document.querySelector(".search input");
-const searchBtn = document.querySelector(".search button");
-const weatherIcon = document.querySelector(".weather-icon");
+const locationInput = document.getElementById("locationInput");
+const searchButton = document.getElementById("searchButton");
+const locationElement = document.getElementById("location");
+const temperatureElement = document.getElementById("temperature");
+const descriptionElement = document.getElementById("description");
 
-async function checkWeather(city) {
-  const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
-  var data = await response.json();
-
-  console.log(data);
-
-  document.querySelector(".city").innerHTML = data.name;
-  document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
-  document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
-  document.querySelector(".wind").innerHTML = data.wind.speed + "km/h";
-
-  if (data.weather[0].main == "Clouds") {
-    weatherIcon.src = "images/clouds.png";
-  } else if (data.weather[0].main == "Clear") {
-    weatherIcon.src = "images/clear.png";
-  } else if (data.weather[0].main == "Rain") {
-    weatherIcon.src = "images/drizzle.png";
-  } else if (data.weather[0].main == "Mist") {
-    weatherIcon.src = "images/mist.png";
+searchButton.addEventListener("click", () => {
+  const location = locationInput.value;
+  if (location) {
+    fetchWeather(location);
   }
-}
-searchBtn.addEventListener("click", () => {
-  checkWeather(searchBox.value);
 });
+
+function fetchWeather(location) {
+  const url = `${apiUrl}?q=${location}&appid=${apiKey}&units=metric`;
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      locationElement.textContent = data.name;
+      temperatureElement.textContent = `${Math.round(data.main.temp)}°C`;
+      descriptionElement.textContent = data.weather[0].description;
+    })
+    .catch((error) => {
+      console.error("Error fetching weather data:", error);
+    });
+}
