@@ -9,8 +9,10 @@ body {
   background-image: url("https://wallpaperaccess.com/full/1540049.jpg");
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   position: relative;
-  color: #fff;
+  color: #221f1f;
+  background-color: #555;
 }
 
 body::before {
